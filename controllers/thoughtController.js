@@ -1,13 +1,14 @@
 const User = require('../models/User');
-
+const Thought = require('../models/Thought');
+// Update user to thought?? Some of it is abritrary 
 module.exports = {
-  getUsers(req, res) {
-    User.find()
-      .then((users) => res.json(users))
+  getThoughts(req, res) {
+    Thought.find()
+      .then((thoughts) => res.json(thoughts))
       .catch((err) => res.status(500).json(err));
   },
-  getSingleUser(req, res) {
-    User.findOne({ _id: req.params.userId })
+  getSingleThought(req, res) {
+    Thought.findOne({ _id: req.params.userId })
       .then((user) =>
         !user
           ? res.status(404).json({ message: 'No user with that ID' })
@@ -16,8 +17,8 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
   // create a new user
-  createUser(req, res) {
-    User.create(req.body)
+  createThought(req, res) {
+    Thought.create(req.body)
       .then((dbUserData) => res.json(dbUserData))
       .catch((err) => res.status(500).json(err));
   },
@@ -31,8 +32,8 @@ module.exports = {
     .then(() => res.json({ message: 'Thought and users deleted!' }))
     .catch((err) => res.status(500).json(err));
   },
-  updateUser(req, res) {
-    User.findOneAndUpdate(
+  updateThought(req, res) {
+    Thought.findOneAndUpdate(
       { _id: req.params.userId },
       { $set: req.body },
       { runValidators: true, new: true }

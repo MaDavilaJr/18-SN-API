@@ -1,11 +1,11 @@
 const router = require('express').Router();
 const {
-  getThought,
+  getThoughts,
   getSingleThought,
   createThought,
   updateThought,
   deleteThought,
-} = require('../../controllers/userController.js');
+} = require('../../controllers/thoughtController.js');
 
 // /api/courses
 router.route('/').get(getThoughts).post(createThought);
@@ -16,5 +16,5 @@ router
   .get(getSingleThought)
   .put(updateThought)
   .delete(deleteThought);
-  
+
 module.exports = router;
