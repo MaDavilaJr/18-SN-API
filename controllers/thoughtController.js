@@ -19,7 +19,19 @@ module.exports = {
   // create a new user
   createThought(req, res) {
     Thought.create(req.body)
-      .then((dbUserData) => res.json(dbUserData))
+      .then((dbUserData) => 
+      {return User.findByIdAndUpdate(
+          {_id: req.params.userId},
+          {$push: {thoughts: dbUserData._id}},
+          {new: true}
+      )})
+      .then((dbUserData) => {
+          if(!dbUserData) {
+              return res.status(404).json({message: 'Thought created but no user with this id'})
+          }
+
+          res.json({message: 'Though successfully made!ss'})
+      })
       .catch((err) => res.status(500).json(err));
   },
   deleteThought(req, res) {
@@ -34,7 +46,7 @@ module.exports = {
   },
   updateThought(req, res) {
     Thought.findOneAndUpdate(
-      { _id: req.params.userId },
+      { _id: req.params.thoughtId },
       { $set: req.body },
       { runValidators: true, new: true }
     )
