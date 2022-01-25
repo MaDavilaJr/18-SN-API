@@ -48,10 +48,10 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   }, // New code 24/22
-  addNewFriend(req, res) {
+  addFriend(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
-      { $set: { friends: params.friendId }},
+      { $set: { friends: req.params.friendId }},
       { new: true, runValidators: true }
     )
     .then(dbUserData => {
@@ -65,8 +65,8 @@ module.exports = {
   },
   removeFriend(req, res) {
     User.findOneAndUpdate(
-      {_id: params.userId },
-      {$pull: { friends: params.friendId }},
+      {_id: req.params.userId },
+      {$pull: { friends: req.params.friendId }},
       { new: true }
     )
     .then(dbUserData => res.json(dbUserData))

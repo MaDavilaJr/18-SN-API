@@ -82,4 +82,4 @@ module.exports = {
     .catch(err => res.json(err));
   }
 };
-// module.exports = thoguhtController;
+// module.exports = thoughtController;
