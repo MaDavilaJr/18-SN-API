@@ -30,7 +30,7 @@ module.exports = {
               return res.status(404).json({message: 'Thought created but no user with this id'})
           }
 
-          res.json({message: 'Though successfully made!ss'})
+          res.json({message: 'Thought successfully made!'})
       })
       .catch((err) => res.status(500).json(err));
   },
