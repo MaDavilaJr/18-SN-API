@@ -47,11 +47,11 @@ module.exports = {
           : res.json(user)
       )
       .catch((err) => res.status(500).json(err));
-  },
+  }, // New code 24/22
   addNewFriend(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
-      { $push: { friends: params.friendId }},
+      { $set: { friends: params.friendId }},
       { new: true, runValidators: true }
     )
     .then(dbUserData => {
@@ -73,4 +73,4 @@ module.exports = {
     .catch(err => res.json(err));
   }
 };
-module.exports = userController;
+// module.exports = userController;

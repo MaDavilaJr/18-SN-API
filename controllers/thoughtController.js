@@ -56,11 +56,11 @@ module.exports = {
           : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
-  },
-  addNewReaction(req, res) {
+  }, // New code 24/22
+  addReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $push: { reactions: body }},
+      { $push: { reactions: req.body }},
       { new: true, runValidators: true }
     )
     .then(dbThoughtData => {
@@ -74,11 +74,12 @@ module.exports = {
   },
   removeReaction(req, res) {
     Thought.findOneAndUpdate(
-      {_id: params.thoughtId },
-      {$pull: { reactions: { reactionId: params.reactionId }}},
+      {_id: req.params.thoughtId },
+      {$pull: { reactions: { reactionId: req.body.reactionId }}},
       { new: true, runValidators: true }
     )
     .then(dbUserData => res.json(dbUserData))
     .catch(err => res.json(err));
   }
 };
+// module.exports = thoguhtController;
