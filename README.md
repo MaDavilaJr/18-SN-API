@@ -45,9 +45,9 @@ To access this application download the code and run 'npm start' in the root of 
 
 ## Links
 
-Tutorial Video: 
+Tutorial Video: https://watch.screencastify.com/v/1rL8LSrkzcAdHwULF3Tt
 
-GitHub Repo: 
+GitHub Repo: https://github.com/MaDavilaJr/18-SN-API
 
 ## Questions
 
